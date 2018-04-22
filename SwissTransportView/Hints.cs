@@ -9,8 +9,6 @@ namespace SwissTransportView
 {
     class Hints
     {
-        public List<Station> From { get; set; }
-
-        public List<Station> To { get; set; }
+        public List<Station> Stations { get; set; }
     }
 }
