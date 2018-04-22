@@ -23,10 +23,10 @@
                 <ColumnDefinition Width="100*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="2">
-                <Button x:Name="btnSearch" Content="Verbindung Suchen" Click="getConnections"/>
+                <Button x:Name="btnSearch" TabIndex="3" Content="Verbindung Suchen" Click="getConnections" IsDefault="True"/>
             </Grid>
             <Grid>
-                <ComboBox x:Name="cmbxFrom" IsEditable="True" TextBoxBase.TextChanged="stationInput" PreviewTextInput="previewInput" SelectionChanged="selectStation" Text="{Binding Path=Selected.From}" ItemsSource="{Binding Path=Hints.Stations}">
+                <ComboBox x:Name="cmbxFrom" TabIndex="0" IsEditable="True" TextBoxBase.TextChanged="stationInput" PreviewTextInput="previewInput" SelectionChanged="selectStation" Text="{Binding Path=Selected.From}" ItemsSource="{Binding Path=Hints.Stations}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=Name}"/>
@@ -35,7 +35,7 @@
                 </ComboBox>
             </Grid>
             <Grid Grid.Column="1">
-                <ComboBox x:Name="cmbxTo" IsEditable="True" TextBoxBase.TextChanged="stationInput" PreviewTextInput="previewInput" SelectionChanged="selectStation" Text="{Binding Path=Selected.To}" ItemsSource="{Binding Path=Hints.Stations}">
+                <ComboBox x:Name="cmbxTo" TabIndex="1" IsEditable="True" TextBoxBase.TextChanged="stationInput" PreviewTextInput="previewInput" SelectionChanged="selectStation" Text="{Binding Path=Selected.To}" ItemsSource="{Binding Path=Hints.Stations}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=Name}"/>
@@ -53,16 +53,21 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="From: "/>
-                                <TextBlock Text="To: "/>
+                                <TextBlock Text="From:    "/>
+                                <TextBlock Text="To:    "/>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <TextBlock Text="{Binding Path=From.Station.Name}"/>
                                 <TextBlock Text="{Binding Path=To.Station.Name}"/>
                             </StackPanel>
                             <StackPanel Grid.Column="2">
+                                <TextBlock Text="    Abfahrt:    "/>
+                                <TextBlock Text="    Ankunft:    "/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3">
                                 <TextBlock Text="{Binding Path=From.Departure, Converter={StaticResource ToTime}}"/>
                                 <TextBlock Text="{Binding Path=To.Arrival, Converter={StaticResource ToTime}}"/>
                             </StackPanel>

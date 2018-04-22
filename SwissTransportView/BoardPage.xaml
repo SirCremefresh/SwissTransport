@@ -9,6 +9,59 @@
       Title="BoardPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="250*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="49*"/>
+                <ColumnDefinition Width="31*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <ComboBox x:Name="cmbxStation" TabIndex="0" IsEditable="True" TextBoxBase.TextChanged="stationInput" PreviewTextInput="previewInput" SelectionChanged="selectStation" Text="{Binding Path=Selected.From}" ItemsSource="{Binding Path=Hints.Stations}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Button x:Name="btnBoard" TabIndex="1" Content="get Board" Click="getBoard" IsDefault="True"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ListView ItemsSource="{Binding Path=Board.List}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="Name:    "/>
+                                <TextBlock Text="Number:    "/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding Path=Name}"/>
+                                <TextBlock Text="{Binding Path=Number}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="     Category:    "/>
+                                <TextBlock Text="     To:    "/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3">
+                                <TextBlock Text="{Binding Path=Category}"/>
+                                <TextBlock Text="{Binding Path=To}"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </Grid>
 </Page>

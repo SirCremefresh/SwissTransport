@@ -66,7 +66,32 @@ namespace SwissTransportView
         /*search for connections between from and to station*/
         private void getConnections(object sender, RoutedEventArgs e)
         {
-            modelView.getConnections();
+            /*holds errors*/
+            string errors = "";
+
+            /*check for any errors*/
+            if (modelView.Selected.From == null || modelView.Selected.From == "")
+            {
+                errors += "From Station is Empty!\n";
+            }
+            if (modelView.Selected.To == null || modelView.Selected.To == "")
+            {
+                errors += "To Station is Empty!\n";
+            }
+            if (modelView.Selected.From == modelView.Selected.To)
+            {
+                errors += "From and To Stations are the same!\n";
+            }
+
+            /*display errors or get connections*/
+            if (errors != "")
+            {
+                MessageBox.Show(errors);
+            }
+            else
+            {
+                modelView.getConnections();
+            }
         }
 
         /*selected a connection*/

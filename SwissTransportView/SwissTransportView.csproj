@@ -54,12 +54,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Board.cs" />
+    <Compile Include="BoardPage.xaml.cs">
+      <DependentUpon>BoardPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Connections.cs" />
+    <Compile Include="ModelPage.cs" />
     <Compile Include="Selected.cs" />
     <Compile Include="StationPage.xaml.cs">
       <DependentUpon>StationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToTime.cs" />
+    <Page Include="BoardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
+using System.Windows;
 using Newtonsoft.Json;
 
 namespace SwissTransport
@@ -14,10 +16,16 @@ namespace SwissTransport
 
             if (responseStream != null)
             {
-                var message = new StreamReader(responseStream).ReadToEnd();
-                var stations = JsonConvert.DeserializeObject<Stations>(message
-                    , new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                return stations;
+                try
+                {
+                    var message = new StreamReader(responseStream).ReadToEnd();
+                    var stations = JsonConvert.DeserializeObject<Stations>(message, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                    return stations;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
             }
 
             return null;
@@ -31,10 +39,17 @@ namespace SwissTransport
 
             if (responseStream != null)
             {
-                var readToEnd = new StreamReader(responseStream).ReadToEnd();
-                var stationboard =
-                    JsonConvert.DeserializeObject<StationBoardRoot>(readToEnd);
-                return stationboard;
+                try
+                {
+                    var readToEnd = new StreamReader(responseStream).ReadToEnd();
+                    var stationboard = JsonConvert.DeserializeObject<StationBoardRoot>(readToEnd);
+                    return stationboard;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+
             }
 
             return null;
@@ -48,10 +63,16 @@ namespace SwissTransport
 
             if (responseStream != null)
             {
-                var readToEnd = new StreamReader(responseStream).ReadToEnd();
-                var connections =
-                    JsonConvert.DeserializeObject<Connections>(readToEnd);
-                return connections;
+                try
+                {
+                    var readToEnd = new StreamReader(responseStream).ReadToEnd();
+                    var connections = JsonConvert.DeserializeObject<Connections>(readToEnd);
+                    return connections;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
             }
 
             return null;

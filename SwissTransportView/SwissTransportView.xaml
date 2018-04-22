@@ -7,7 +7,25 @@
         mc:Ignorable="d"
         Title="Swiss Transport" Height="395.735" Width="1002.5">
     <Window.Resources>
-       
+
     </Window.Resources>
-    <Frame x:Name="Main" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="300*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="311*"/>
+                <ColumnDefinition Width="683*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+                <Button x:Name="btnStationPage" TabIndex="10" Content="Stations" MinWidth="100" Click="getBoard"/>
+                <Button x:Name="btnBoardPage" TabIndex="11" Content="Board" MinWidth="100" Margin="10,0,0,0" Click="getStations"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Frame Content="{Binding CurrentPage}" Grid.RowSpan="2" NavigationUIVisibility="Hidden"/>
+        </Grid>
+    </Grid>
 </Window>

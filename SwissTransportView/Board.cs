@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace SwissTransportView
 {
-    class Connections
+    class Board
     {
-        public List<Connection> List { get; set; }
+        public List<StationBoard> List { get; set; }
     }
 }
