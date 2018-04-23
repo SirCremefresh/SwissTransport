@@ -48,8 +48,8 @@ Sie soll als Nachschlagewerk dienen und wurde für eine einfache Handhabung und 
 
 ### 2.5.3 Priorität 3
 - [x] 06 Ort einer Station anzeigen (Maps)
-- [] 07 Stationen in meiner Nähe finden
-- [] 08 Gefundene Resultate per Mail verschicken
+- [ ] 07 Stationen in meiner Nähe finden
+- [ ] 08 Gefundene Resultate per Mail verschicken
 
 <a name="concept"/>
 
@@ -96,53 +96,85 @@ public void getStation(string input)
 
 ## 3.2 Mockup
 ### 3.2.1 Verbindungen
-Verbindungen (zwischen zwei Stationen) 
-**TEXT**
+Es können zwei Stationen oder Orte (Von und Nach) angegeben werden. 
+Standartmässig wird das aktuelle Datum und Zeit eingefüllt, jedoch kann das Abfahrtsdatum und die Abfahrtszeit beliebig angegeben werden.
+Wird nach Verbindungen gesucht, werden von der API die nächsten Verbindungen anhand der Eingaben zurückgegeben, welche in die Liste gefüllt werden. 
+Es werden pro Verbindung die Vonstation und Abfahrtszeit sowie der Nachstation und Ankunftszeit angezeigt. 
+Wird ein Listenelement angewählt, erscheint ein neues Fenster mit mehr Details (Vonstation, genaue Abfahrtszeit sowie dem Gleis, 
+die Reisezeit und die Nachstation mit genauer Ankunftszeit und Gleis). Bei Falschen Angaben erscheint eine Nachricht, welche die Fehlerhaften
+angaben zurückmeldet.
+
+In der Menüleiste kann auf die Abfahrtsplans Seite gewechselt werden.
 
 ![Mockup Verbindungen](/img/StationMockup.JPG)
 
 ### 3.2.2 Abfahrtsplan
-Abfahrtsplan ab einer Station
-**TEXT**
+Es kann eine Station angegeben werden. Mit Abfahrtsplan anzeigen werden alle Abfahrten von der Station ausgehend in die Liste gefüll.
+Es werden der Name, seine Zugskategorie, die Gleisnummer und die Ankunftsstation angezeigt. 
+Mit Stationsort anzeigen wird Google Maps in einem Browserfenster an der angegebenen Station geöffnet.
+
+In der Menüleiste kann auf die Verbindungen Seite gewechselt werden.  
 
 ![Mockup Abfahrtsplan](/img/BoardMockup.JPG)
   
 <a name="validation"/>
 
 ## 3.3 Validierung
-* **Stationen** Es werden direkt bei der Eingabe Suchresultate angezeigt. Diese werden nach Wichtigkeit und Zusammenpassen sortiert angezeigt 
-und können angeklickt werden. Wird ein Stationsname nicht fertig geschrieben wird der beste Match eingefügt, falls keiner zutrifft wird dies gemeldet.
-Stationsnamen dürfeb nicht leer sein und die Abfahrts- und Ankunftsstation dürfen nicht gleich heissen.
-* **Datum****TEXT**
+* **Stationen** Es werden direkt bei der Eingabe Suchresultate in einem Dropdown angezeigt. Diese Resultate werden nach Wichtigkeit und Zusammenpassen sortiert angezeigt 
+und können angeklickt werden, was zum verfollständigen der Eingabe führt. Wurde ein Stationsname bei einer Verbindungs- oder Abfahrtsplanssuche fertig geschrieben, 
+wird nach einem Match gesucht und eingefügt. Falls keiner gefunden wurde wird dies gemeldet.
+Stationsnamen dürfen nicht leer und bei der Verbindungsseite die Abfahrts- und Ankunftsstation nicht gleich sein.
+
+* **Datum** Das Datum wird nach dem aktuellen Datum standartmässig ausgefüllt. Wird nach einer Verbindung gesucht, darf das Datum nicht leer sein
+und es muss ein gültiges Datum sein, ansonsten wird dies in einem Fenster mitgeteilt.
+
+* **Zeit** Die Zeit wird nach der aktuellen Zeit standartmässig ausgefüllt. Wird nach einer Verbindung gesucht, darf die Zeit nicht leer sein
+und es muss eine gültige Zeit sein, ansonsten wird dies in einem Fenster mitgeteilt.
 
 <a name="test"/>
 
 ## 3.3 Testfälle
 **#1**
 ```
-GEGEBEN SEI   Ich bin auf der Ansichtsseite
-WENN          nicht abgeschlossene Dörraufträge in der Datenbank erfasst sind
-DANN          werden diese in einer Tabelle aufgelistet.
+GEGEBEN SEI   Ich bin auf der Verbindungsseite
+WENN          ich eine Station (Von oder Nach) eintippe
+DANN          wird ein Liste als Dropdown mit passenden Stationen angezeigt.
 ```
 **#2**
 ```
-GEGEBEN SEI   Ich bin auf der Ansichtsseite
-WENN          der Dörrauftrag noch nicht abgeschlossen ist und das Enddatum des Auftrages überschritten ist
-DANN          wird bei der Frucht das Icon zu verdorben gewechselt.
+GEGEBEN SEI   Ich bin auf der Verbindungsseite
+WENN          nach Verbindungen suche
+DANN          werden anhand der Angaben (Stationen und Datum/Zeit) die nächsten Verbindungen in eine Liste gefüllt.
 ```
 **#3**
 ```
-GEGEBEN SEI   Ich bin auf der Ansichtsseite
-WENN          ich einen Dörrauftrag erstelle möchte ("Dörrauftrag erfassen")
-DANN          öffnet sich ein Eingabefenster um einen Benutzer zu efassen.
+GEGEBEN SEI   Ich bin auf der Verbindungsseite
+WENN          ich in der Menüleiste auf Abfahrtsplan drücke
+DANN          wird die Abfahrtsplansseite geladen.
+```
+**#4**
+```
+GEGEBEN SEI   Ich bin auf der Abfahrtsplansseite
+WENN          ich auf Abfahrtsplan anzeigen drücke 
+DANN          werden anhand der eingegebener Station die gefundenen Abfahrten in eine Liste gefüllt.
+```
+**#5**
+```
+GEGEBEN SEI   Ich bin auf der Abfahrtsplansseite
+WENN          ich auf Stationsort anzeigen drücke 
+DANN          wird Google Maps in einem Browserfenster bei der angegebener Station geöffnet.
 ```
 
-![Use Case](/img/Use Case.JPG)
+### 3.3.1 Use Case
+Unsere Anwendung wird von Reisenden benutzt. Diese können nach Stationen suchen, aktuelle oder zukünftige Verbindungen zwischen
+zwei Stationen anzeigen und einen Abfahrtsplan von einer Station aus ausgehend anzeigen lassen.
+
+![Use Case](/img/UseCase.JPG)
 
 <a name="activity"/>
 
 ## 3.5 Aktivitätendiagramm
-**TEXT**
+Der grobe Ablauf (alle Priorität 1 Anforderungen) der Anwendung ist in diesem Aktivitätenprogramm zusammengefasst.
 
 ![Aktivitätendiagramm](/img/activity.JPG)
 
@@ -153,17 +185,16 @@ DANN          öffnet sich ein Eingabefenster um einen Benutzer zu efassen.
 <a name="features"/>
 
 ## 4.1 Funktionen
-### 4.1.1 Priorität 1
-A01 ✔
-A02 ✔
-A03 ✔
+| Anforderung | Priorität | Status | Beschreibung                      |
+| ----------- | --------- | ------ | --------------------------------- | 
+| A01         | 1         | ✔      | Während der Eingabe einer Station werden Vorschläge in einem Dropdown angezeigt | 
+| A02         | 1         | ✔      | Verbindungsseite: Mit Verbindung suchen werden die nächsten Verbindungen anhand der Angaben gesucht und angezeigt | 
+| A03         | 1         | ✔      | Abfahrtsplansseite: Mit Abfahrtsplan anzeigen werden die nächste Abfahrten ab der eingegebenen Station gesucht und angezeigt | 
+| A04         | 2         | ✔      | Während der Eingabe einer Station werden Vorschläge in einem Dropdown angezeigt | 
+| A05         | 2         | ✔      | Es kann ein beliebiges Datum und oder Zeit zur Verbindungssuche angegeben werden, standartmässig aktuelle Zeit |
+| A06         | 3         | ✔      | Mit Stationsort anzeigen wird Maps in einem Browserfenster an der angegebener Station geöffnet |  
 
-### 4.1.2 Priorität 2
-A04 ✔
-A05 ✔
-
-### 4.1.3 Priorität 3
-A06 ✔
+✔ Status -> Funktion fehlerfrei implementiert
 
 <a name="bugs"/>
 
@@ -187,14 +218,12 @@ Zurzeit sind alle Bugs behoben und **keine** weiteren Fehler bekannt.
 
 ## 4.2 Screenshot der Anwendung
 ### Verbindungen zwischen zwei Stationen
-**TEXT**
 
-![Station](/img/station.jpg)
+![Station](/img/station.JPG)
 
 ### Abfahrtsplan ab einer Station
-**TEXT**
 
-![Board](/img/board.jpg)
+![Board](/img/board.JPG)
 
 <a name="report"/>
 
