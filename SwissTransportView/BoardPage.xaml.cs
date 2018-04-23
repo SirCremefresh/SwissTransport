@@ -66,5 +66,11 @@ namespace SwissTransportView
         {
             modelView.getBoard();
         }
+
+        /*get selected station position*/
+        private void getMap(object sender, RoutedEventArgs e)
+        {
+            modelView.getMap();
+        }
     }
 }

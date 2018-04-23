@@ -15,8 +15,9 @@
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="49*"/>
-                <ColumnDefinition Width="31*"/>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
             <Grid>
                 <ComboBox x:Name="cmbxStation" TabIndex="0" IsEditable="True" TextBoxBase.TextChanged="stationInput" PreviewTextInput="previewInput" SelectionChanged="selectStation" Text="{Binding Path=Selected.From}" ItemsSource="{Binding Path=Hints.Stations}">
@@ -28,7 +29,10 @@
                 </ComboBox>
             </Grid>
             <Grid Grid.Column="1">
-                <Button x:Name="btnBoard" TabIndex="1" Content="get Board" Click="getBoard" IsDefault="True"/>
+                <Button x:Name="btnBoard" TabIndex="1" Content="Abfahrtsplan anzeigen" Click="getBoard" IsDefault="True"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Button x:Name="btnMap" TabIndex="2" Content="Stationsort anzeigen" Click="getMap"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">

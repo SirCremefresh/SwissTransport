@@ -241,5 +241,49 @@ namespace SwissTransportView
             Selected.Time = time;
             OnPropertyChanged("Selected");
         }
+
+        /*opens google maps in browser at station location*/
+        public void getMap()
+        {
+            List<Station> stations = null;
+            string errors = "";
+
+            if (Selected.From == null || Selected.From == "")
+            {
+                errors += "Station is Empty!\n";
+            }
+
+            if (errors == "")
+            {
+                try
+                {
+                    stations = transport.GetStations(Selected.From).StationList;
+                }
+                catch (Exception)
+                {
+                    errors += "Station not found\n";
+                }
+
+                if (errors == "" && stations != null && stations.Count > 0)
+                {
+                    Station station = transport.GetStations(Selected.From).StationList[0];
+                    Selected.From = station.Name;
+                    OnPropertyChanged("Selected");
+
+                    try
+                    {
+                        System.Diagnostics.Process.Start("https://www.google.com/maps/?q=" + station.Coordinate.XCoordinate + "," + station.Coordinate.YCoordinate);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("Error opening maps in browser: " + e.ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(errors);
+                }
+            }
+        }
     }
 }
