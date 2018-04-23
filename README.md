@@ -1,22 +1,20 @@
 # M318 SwissTransport
 ## 1 Inhaltsverzeichnis
-* [2 Projekt Informationen](#Informationen) 
-* [3 Konzeptionierung](#Konzeptionierung)  
-  * [3.1 Formulare](#Formulare)  
-    * [3.1.1 Mockup](#Mockup)  
-    * [3.1.2 Formularfelder](#Formularfelder)  
-    * [3.1.3 Validierung](#Validierung)  
-  * [3.2 Datenbank](#Datenbank) 
-    * [3.2.1 Table fruit](#fruit) 
-    * [3.2.2 Table quantityCategory](#quantityCategory) 
-    * [3.2.3 Table parchOrder](#parchOrder) 
-  * [3.3 Testfälle](#Testfälle)  
-  * [3.4 Roadmap](#Roadmap)  
-* [4 Testbericht](#Testbericht)  
-* [5 Screenshot der Seite](#Screenshot)  
-* [6 REST-API](#rest-api)
+* [2 Projekt Informationen](#information) 
+* [3 Konzeptionierung](#concept)  
+  * [3.1 Coderichtlinie](#code) 
+  * [3.2 Mockup](#mockup)  
+  * [3.3 Validierung](#validation)  
+  * [3.4 Testfälle](#test)  
+  * [3.5 Aktivitätendiagramm](#activity) 
+* [4 Umsetzung](#implementation)  
+  * [4.1 Funktionen](#features)  
+  * [4.2 fehlede Funktionen und Bugs](#bugs)  
+  * [4.3 Screenshot](#screenshot) 
+* [5 Testbericht](#report)
+* [6 Installation](#install)  
 
-<a name="Informationen"/>
+<a name="information"/>
 
 # 2 Projekt Informationen
 ## 2.1 Autor und Dokument
@@ -51,13 +49,13 @@ Sie soll als Nachschlagewerk dienen und wurde für eine einfache Handhabung und 
 * 07 Stationen in meiner Nähe finden
 * 08 Gefundene Resultate per Mail verschicken
 
-<a name="Konzeptionierung"/>
+<a name="concept"/>
 
 # 3 Konzeptionierung
 Mit C# und WPF werde ich nach MVVM arbeiten. Die komplette Logik werde ich in Models auslagern. 
 Im xaml.cs sollen nur Funktionen die mit der View beziehungsweise den Controls stehen, aber keine Logik.
 
-<a name="Code"/>
+<a name="code"/>
 
 ## 3.1 Coderichtlinien
 ### 3.1.1 Namensgebung
@@ -92,28 +90,28 @@ public void getStation(string input)
 }
 ```
 
-<a name="Mockup"/>
+<a name="mockup"/>
 
-### 3.1.1 Mockup
-#### 3.1.1.1 Dörr-Aufträge anzeigen
-Die Anzeige Seite ist die Hauptseite. Hier werden alle Dörrauftröge angezeigt, welche noch nicht abgeschlossen sind. Wird auf "Dörrauftrag erfassen" geklickt, wird ein Eingabefenster geöffnet (Siehe Dörraufträge erfassen). In der Tabelle stehen einige Informationen zum Dörrauftrag sowie dem Kunden. Der Status enthält entweder einen roten Apfel 🍎, um einen Frucht innerhalb der Frist, oder eine braune, verdorbene Frucht 🥔, um eine Frucht ausserhalb der Frist, zu kennzeichnen. Jeder offene Dörrauftrag kann mit einem klick auf "Auftrag bearbeiten" verändert werden, indem ein Eingabefenster geöffnet wird (Siehe Dörraufträge bearbeiten). 
+## 3.2 Mockup
+### 3.2.1 Verbindungen
+Verbindungen (zwischen zwei Stationen) 
 
-![Dörr-Aufträge Anzeigen](/images/anzeigen.jpg)
+![Mockup Verbindungen](/img/StationMockup.JPG)
 
-#### 3.1.1.2 Dörr-Aufträge erfassen
-Das Eingabefenster wird in der Dörraufträgeanzeige geöffnet. Es müssen alle Felder bis auf die Telefonnummer erfasst werden. Mit "Auftrag erstellen" werden die Daten in der Datenbank erfasst, mit "Auftrag abbrechen" wird nichts erfasst und das Eingabefenster schliesst sich.
+### 3.2.2 Abfahrtsplan
+Abfahrtsplan ab einer Station
 
-![Dörr-Aufträge Erfassen](/images/erfassen.jpg)
+![Mockup Abfahrtsplan](/img/BoardMockup.JPG)
   
-<a name="Validierung"/>
+<a name="validation"/>
 
-### 3.1.3 Validierung
+## 3.3 Validierung
 * Stationen -> Es werden direkt bei der Eingabe Suchresultate angezeigt. Diese werden nach Wichtigkeit und Zusammenpassen sortiert angezeigt 
 und können angeklickt werden. Wird ein Stationsname nicht fertig geschrieben wird der beste Match eingefügt, falls keiner zutrifft wird dies gemeldet.
 Stationsnamen dürfeb nicht leer sein und die Abfahrts- und Ankunftsstation dürfen nicht gleich heissen.
-* Daten ->
+* Datum ->
 
-<a name="Testfälle"/>
+<a name="test"/>
 
 ## 3.3 Testfälle
 ### #1
@@ -141,16 +139,36 @@ WENN          ich die Angaben gemacht habe
 DANN          können diese in der Datenbank gespeichert ("Auftrag erstellen") oder der Vorgang abgebrochen werden.
 ```
 
-## 3.4 Use Cases
+![Use Case](/img/Use Case.JPG)
+
+<a name="activity"/>
 
 ## 3.5 Aktivitätendiagramm
+* descriotion!
+*
+*
 
-<a name="Testbericht"/>
+![Aktivitätendiagramm](/img/activity.JPG)
+
+<a name="implementation"/>
 
 # 4 Umsetzung
+
+<a name="features"/>
+
 ## 4.1 Funktionen
+*
+*
+*
+
+<a name="bugs"/>
 
 ## 4.2 fehlende Funktionen und Bugs
+*
+*
+*
+
+<a name="screenshot"/>
 
 ## 4.2 Screenshot der Anwendung
 ### Verbindungen zwischen zwei Stationen
@@ -159,19 +177,18 @@ DANN          können diese in der Datenbank gespeichert ("Auftrag erstellen") o
 ### Abfahrtsplan ab einer Station
 ![Board](/img/board.jpg)
 
+<a name="report"/>
 
-<a name="Testbericht"/>
+# 5 Testbericht
+*
+*
+*
 
-# 4 Testbericht
-* #1 Es werden der Status, der Vorname, der Nachname und die Frucht aus der Datenbank ausgelesen und dargestellt 
-* #2 Das Rote Apfel Icon erscheint, wenn der Auftrag noch nicht abgeschlossen, aber noch innerhalb der Zeit ist (Berechnet aus dem Erstelldatums des Auftrages + den Tagen je nach Menge). Andernfalls erscheint eine braune Kartoffel.
-* #3 & #4 Es können neue Dörraufträge in einem Eingabefenster erstellt und in der Datenbank gespeichert werden.
-* #5 & #6 Es können erfasste Dörraufträge sowie deren Status bearbeitet und in der Datenbank gespeichert werden.
-* #8, #9 & #10 Die Validierung von Vor-und Nachnamen, Telefonnummer sowie der Email Adresse funktioniert.
-* #11 Es können mehere Dörraufträge ausgewählt und zusammen abgeschlossen werden.
+<a name="install"/>
 
-<a name="Screenshot"/>
-
-# 5 Installation
+# 6 Installation
+*
+*
+*
 
 
