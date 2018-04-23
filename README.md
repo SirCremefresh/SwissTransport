@@ -38,18 +38,18 @@ Sie soll als Nachschlagewerk dienen und wurde für eine einfache Handhabung und 
 
 ## 2.5 Anforderungen
 ### 2.5.1 Priorität 1
-* 01 Start- und Endstationen mittels Eingabefeld suchen
-* 02 Die nächste vier bis fünf Verbindungen zwischen angegebener Start- und Endstationen sehen
-* 03 Verbindungen ab einer bestimmten Station anzeigen
+- [x] 01 Start- und Endstationen mittels Eingabefeld suchen
+- [x] 02 Die nächste vier bis fünf Verbindungen zwischen angegebener Start- und Endstationen sehen
+- [x] 03 Verbindungen ab einer bestimmten Station anzeigen
 
 ### 2.5.2 Priorität 2
-* 04 Während der Eingabe einer Station bereits Suchresultate erhalten
-* 05 Verbindungen an beliebigem Datum anuzeigen
+- [x] 04 Während der Eingabe einer Station bereits Suchresultate erhalten
+- [x] 05 Verbindungen an beliebigem Datum anuzeigen
 
 ### 2.5.3 Priorität 3
-* 06 Ort einer Station anzeigen (Maps)
-* 07 Stationen in meiner Nähe finden
-* 08 Gefundene Resultate per Mail verschicken
+- [x] 06 Ort einer Station anzeigen (Maps)
+- [] 07 Stationen in meiner Nähe finden
+- [] 08 Gefundene Resultate per Mail verschicken
 
 <a name="concept"/>
 
