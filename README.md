@@ -5,8 +5,9 @@
   * [3.1 Coderichtlinie](#code) 
   * [3.2 Mockup](#mockup)  
   * [3.3 Validierung](#validation)  
-  * [3.4 Testfälle](#test)  
-  * [3.5 Aktivitätendiagramm](#activity) 
+  * [3.4 Testfälle](#test) 
+  * [3.5 Use Case](#usecase)  
+  * [3.6 Aktivitätendiagramm](#activity) 
 * [4 Umsetzung](#implementation)  
   * [4.1 Funktionen](#features)  
   * [4.2 fehlede Funktionen und Bugs](#bugs)  
@@ -82,7 +83,7 @@ den **ternären Operator** ( ? : ) anstatt if else brauchen.
 getSomething(true ? true : false);
 ```
 
-### 3.1.2 Kommentare
+### 3.1.3 Kommentare
 Ich kommentiere grundsätzlich **jede Methode oberhalb** mit /* */, verzichte ansonsten auf Kommentare.
 ```
 /*returns station from input*/
@@ -133,14 +134,31 @@ und es muss eine gültige Zeit sein, ansonsten wird dies in einem Fenster mitget
 
 <a name="test"/>
 
-## 3.3 Testfälle
-**#1**
-```
-GEGEBEN SEI   Ich bin auf der Verbindungsseite
-WENN          ich eine Station (Von oder Nach) eintippe
-DANN          wird ein Liste als Dropdown mit passenden Stationen angezeigt.
-```
-**#2**
+## 3.4 Testfälle
+### 3.4.1 Station suchen
+**Vorbedingung** Es kann nach einer Station gesucht werden (Verbindungs- oder Abfahrtsplansseite). 
+
+**Anforderung** A01 & A04
+
+**Testszenario**
+
+| Schritt | Aktivität                                                     | Erwartetes Resultat                                      |
+| ------- | ------------------------------------------------------------- | -------------------------------------------------------- | 
+| 1       | Ich gebe Text in ein Eingabefeld (zb. Von oder Nach) ein      | Es erscheint bei gefundenen Resultaten ein Dropdown mit den passenden Stationen |
+| 2       | Ich wähle eine Station in der Vorschlagsliste an              | Die ausgewählte Station wird in das Eingabefeld eingefügt |
+
+### 3.4.2 Station suchen
+**Vorbedingung** Es kann nach einer Station gesucht werden (Verbindungs- oder Abfahrtsplansseite). 
+
+**Anforderung** A02
+
+**Testszenario**
+
+| Schritt | Aktivität                                                     | Erwartetes Resultat                                      |
+| ------- | ------------------------------------------------------------- | -------------------------------------------------------- | 
+| 1       | Ich gebe Text in ein Eingabefeld (zb. Von oder Nach) ein      | Es erscheint bei gefundenen Resultaten ein Dropdown mit den passenden Stationen |
+| 2       | Ich wähle eine Station in der Vorschlagsliste an              | Die ausgewählte Station wird in das Eingabefeld eingefügt |
+
 ```
 GEGEBEN SEI   Ich bin auf der Verbindungsseite
 WENN          nach Verbindungen suche
@@ -165,7 +183,9 @@ WENN          ich auf Stationsort anzeigen drücke
 DANN          wird Google Maps in einem Browserfenster bei der angegebener Station geöffnet.
 ```
 
-### 3.3.1 Use Case
+<a name="usecase"/>
+
+## 3.5 Use Case
 Unsere Anwendung wird von Reisenden benutzt. Diese können nach Stationen suchen, aktuelle oder zukünftige Verbindungen zwischen
 zwei Stationen anzeigen und einen Abfahrtsplan von einer Station aus ausgehend anzeigen lassen.
 
@@ -173,7 +193,7 @@ zwei Stationen anzeigen und einen Abfahrtsplan von einer Station aus ausgehend a
 
 <a name="activity"/>
 
-## 3.5 Aktivitätendiagramm
+## 3.6 Aktivitätendiagramm
 Der grobe Ablauf (alle Priorität 1 Anforderungen) der Anwendung ist in diesem Aktivitätenprogramm zusammengefasst.
 
 ![Aktivitätendiagramm](/img/activity.JPG)
@@ -194,29 +214,36 @@ Der grobe Ablauf (alle Priorität 1 Anforderungen) der Anwendung ist in diesem A
 | A05         | 2         | ✔      | Es kann ein beliebiges Datum und oder Zeit zur Verbindungssuche angegeben werden, standartmässig aktuelle Zeit |
 | A06         | 3         | ✔      | Mit Stationsort anzeigen wird Maps in einem Browserfenster an der angegebener Station geöffnet |  
 
-✔ Status -> Funktion fehlerfrei implementiert
+✔ **Funktion fehlerfrei implementiert**
+
+### 4.1.1 zusätzliche Funktionen
+**Autocomplete Station** Ist bei einer Station nur der Anfang (zb. ba) eingegeben worden, 
+wird bei einer Suche (Verbindung suchen oder Abfahrtsplan anzeigen) nach einem besten Vorschlag gesucht 
+und in das Eingabefeld eingefügt (hier Basel SBB). Wird keine Station gefunden wird dies Mitgeteilt.
+
+**TEXT**
 
 <a name="bugs"/>
 
 ## 4.2 fehlende Funktionen und Bugs
-### 4.2.1 Fehlende oder nur teilweise fertige Funktionen
+### 4.2.1 Fehlende, teilweise oder nicht fertige Funktionen
 | Anforderung | Priorität | Status | Beschreibung                      |
 | ----------- | --------- | ------ | --------------------------------- | 
 | A07         | 3         | 🔶      | Es können keine Stationen in der Nähe des Standorts gefunden werden | 
 | A08         | 3         | 🔶      | Resultate können nicht per Email verschickt werden | 
 
-🔶 Status -> Funktion nicht implementiert
+🔶 **Funktion nicht implementiert**
 
-🐛 Status -> Funktion nur teilweise implementiert
+🐛 **Funktion nur teilweise implementiert und fertig**
 
-❌ Status -> Funktion führt zu Fehler
+❌ **Funktion führt zu Fehler und ist nicht fertig und funktionstüchtig**
 
 ### 4.2.2 Bugs und Fehler
-Zurzeit sind alle Bugs behoben und **keine** weiteren Fehler bekannt.
+Zurzeit sind alle **Bugs behoben** und **keine** weiteren Fehler bekannt.
 
 <a name="screenshot"/>
 
-## 4.2 Screenshot der Anwendung
+## 4.3 Screenshot der Anwendung
 ### Verbindungen zwischen zwei Stationen
 
 ![Station](/img/station.JPG)
