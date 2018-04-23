@@ -87,15 +87,28 @@ namespace SwissTransportView
         public void getConnections()
         {
             List<Connection> connections = null;
+            string errors = "";
 
-            try
+            if (Selected.From == null || Selected.From == "")
             {
-                /*best matching stations*/
+                errors += "From Station is Empty!\n";
+            }
+            if (Selected.To == null || Selected.To == "")
+            {
+                errors += "To Station is Empty!\n";
+            }
+            if (Selected.From == Selected.To)
+            {
+                errors += "From and To Stations are the same!\n";
+            }
+
+            /*fill input stations with best match*/
+            if (errors == "")
+            {
                 List<Station> from = transport.GetStations(Selected.From).StationList;
-                if(from == null || from.Count <= 0)
+                if (from == null || from.Count <= 0)
                 {
-                    MessageBox.Show("From station not found");
-                    return;
+                    errors += "From station not found\n";
                 }
                 else
                 {
@@ -106,23 +119,45 @@ namespace SwissTransportView
                 List<Station> to = transport.GetStations(Selected.To).StationList;
                 if (to == null || to.Count <= 0)
                 {
-                    MessageBox.Show("To station not found");
-                    return;
+                    errors += "To station not found\n";
                 }
                 else
                 {
                     Selected.To = to[0].Name;
                     OnPropertyChanged("Selected");
                 }
-
-                connections = transport.GetConnections(Selected.From, Selected.To).ConnectionList;
             }
-            catch (Exception e)
+
+            /*get and parse input date and time*/
+            string date = "";
+            try
             {
-                MessageBox.Show("Stations not found");
+                DateTime selectedDate = DateTime.Parse((string)Selected.Date);
+                date = selectedDate.ToString("yyyy-MM-dd");
+            }
+            catch(Exception)
+            {
+                errors += "Entered Date(" + Selected.Date + ") is invalid!\n";
             }
 
-            if (connections != null && connections.Count > 0)
+            string time = "";
+            try
+            {
+                DateTime selectedTime = DateTime.Parse((string)Selected.Time);
+                time = selectedTime.ToString("HH:mm");
+            }
+            catch (Exception)
+            {
+                errors += "Entered Time(" + Selected.Time + ") is invalid!\n";
+            }
+
+            if (errors == "")
+            {
+                connections = transport.GetConnections(Selected.From, Selected.To, date, time).ConnectionList;
+            }
+
+
+            if (errors == "" && connections != null && connections.Count > 0)
             {
                 try
                 {
@@ -133,6 +168,10 @@ namespace SwissTransportView
                 {
                     MessageBox.Show("Error at getting connections occured: " + e.ToString());
                 }
+            }
+            else
+            {
+                MessageBox.Show(errors);
             }
         }
 
@@ -148,32 +187,59 @@ namespace SwissTransportView
         public void getBoard()
         {
             List<Station> stations = null;
+            string errors = "";
 
-            try
+            if (Selected.From == null || Selected.From == "")
             {
-                stations = transport.GetStations(Selected.From).StationList;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Station not found");
+                errors += "Station is Empty!\n";
             }
 
-            if (stations != null && stations.Count > 0)
+            if (errors == "")
             {
-                Station station = transport.GetStations(Selected.From).StationList[0];
-                Selected.From = station.Name;
-                OnPropertyChanged("Selected");
-
                 try
                 {
-                    Board.List = transport.GetStationBoard(station.Name, station.Id).Entries;
-                    OnPropertyChanged("Board");
+                    stations = transport.GetStations(Selected.From).StationList;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    MessageBox.Show("Error at getting Board occured: " + e.ToString());
+                    errors += "Station not found\n";
+                }
+
+                if (errors == "" && stations != null && stations.Count > 0)
+                {
+                    Station station = transport.GetStations(Selected.From).StationList[0];
+                    Selected.From = station.Name;
+                    OnPropertyChanged("Selected");
+
+                    try
+                    {
+                        Board.List = transport.GetStationBoard(station.Name, station.Id).Entries;
+                        OnPropertyChanged("Board");
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("Error at getting Board occured: " + e.ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(errors);
                 }
             }
+        }
+
+        /*set date yyyy-MM-dd of depart*/
+        public void setDate(string date)
+        {
+            Selected.Date = date;
+            OnPropertyChanged("Selected"); 
+        }
+
+        /*set time HH:mm of depart*/
+        public void setTime(string time)
+        {
+            Selected.Time = time;
+            OnPropertyChanged("Selected");
         }
     }
 }

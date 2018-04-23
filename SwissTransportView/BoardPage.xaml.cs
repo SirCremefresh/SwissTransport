@@ -37,7 +37,6 @@ namespace SwissTransportView
                 modelView.getStationHints(cmbx.Text);
             }
 
-            /*show or hide combobox dropdown*/
             if (cmbx.Text == null || cmbx.Text == "" || modelView.Hints.Stations.Count <= 0)
             {
                 cmbx.IsDropDownOpen = false;
@@ -56,7 +55,6 @@ namespace SwissTransportView
         {
             Station selectedStation = (sender as ComboBox).SelectedItem as Station;
 
-            /*save selected station in from*/
             if (selectedStation != null && selectedStation.Name != "")
             {
                 modelView.selectStation(true, selectedStation.Name);
@@ -66,24 +64,7 @@ namespace SwissTransportView
         /*search for connections between from and to station*/
         private void getBoard(object sender, RoutedEventArgs e)
         {
-            /*holds errors*/
-            string errors = "";
-
-            /*check for any errors*/
-            if (modelView.Selected.From == null || modelView.Selected.From == "")
-            {
-                errors += "Station is Empty!\n";
-            }
-
-            /*display errors or get connections*/
-            if (errors != "")
-            {
-                MessageBox.Show(errors);
-            }
-            else
-            {
-                modelView.getBoard();
-            }
+            modelView.getBoard();
         }
     }
 }

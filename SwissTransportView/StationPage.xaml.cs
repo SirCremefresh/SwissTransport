@@ -25,6 +25,9 @@ namespace SwissTransportView
         {
             InitializeComponent();
             this.DataContext = modelView;
+
+            modelView.setDate(DateTime.Now.ToString("yyyy-MM-dd"));
+            modelView.setTime(DateTime.Now.ToString("HH:mm"));
         }
 
         /*on station input changes*/
@@ -37,7 +40,6 @@ namespace SwissTransportView
                 modelView.getStationHints(cmbx.Text);
             }
 
-            /*show or hide combobox dropdown*/
             if (cmbx.Text == null || cmbx.Text == "" || modelView.Hints.Stations.Count <= 0)
             {
                 cmbx.IsDropDownOpen = false;
@@ -56,7 +58,6 @@ namespace SwissTransportView
         {
             Station selectedStation = (sender as ComboBox).SelectedItem as Station;
 
-            /*select station*/
             if (selectedStation != null && selectedStation.Name != "")
             {
                 modelView.selectStation((sender as ComboBox) == cmbxFrom ? true : false, selectedStation.Name);
@@ -66,32 +67,7 @@ namespace SwissTransportView
         /*search for connections between from and to station*/
         private void getConnections(object sender, RoutedEventArgs e)
         {
-            /*holds errors*/
-            string errors = "";
-
-            /*check for any errors*/
-            if (modelView.Selected.From == null || modelView.Selected.From == "")
-            {
-                errors += "From Station is Empty!\n";
-            }
-            if (modelView.Selected.To == null || modelView.Selected.To == "")
-            {
-                errors += "To Station is Empty!\n";
-            }
-            if (modelView.Selected.From == modelView.Selected.To)
-            {
-                errors += "From and To Stations are the same!\n";
-            }
-
-            /*display errors or get connections*/
-            if (errors != "")
-            {
-                MessageBox.Show(errors);
-            }
-            else
-            {
-                modelView.getConnections();
-            }
+            modelView.getConnections();
         }
 
         /*selected a connection*/
@@ -99,11 +75,22 @@ namespace SwissTransportView
         {
             Connection selectedConnection = (sender as ListView).SelectedItem as Connection;
 
-            /*get connection details*/
             if (selectedConnection != null)
             {
                 modelView.getConnectionDetails(selectedConnection);
             }
+        }
+
+        /*change date*/
+        private void setDate(object sender, TextChangedEventArgs e)
+        {
+            modelView.setDate(dapiDate.Text);
+        }
+
+        /*change time*/
+        private void setTime(object sender, TextChangedEventArgs e)
+        {
+            modelView.setTime(txtTime.Text);
         }
     }
 }

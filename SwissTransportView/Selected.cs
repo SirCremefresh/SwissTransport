@@ -35,5 +35,33 @@ namespace SwissTransportView
                 };
             }
         }
+
+        private string date = "";
+
+        public string Date
+        {
+            get { return date; }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    date = value;
+                };
+            }
+        }
+
+        private string time = "";
+
+        public string Time
+        {
+            get { return time; }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    time = value;
+                };
+            }
+        }
     }
 }

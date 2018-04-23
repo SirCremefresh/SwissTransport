@@ -13,8 +13,9 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="66*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -45,6 +46,22 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="150*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <DatePicker x:Name="dapiDate" FirstDayOfWeek="Monday" Text="{Binding Path=Selected.Date}" TextBoxBase.TextChanged="setDate">
+                    
+                </DatePicker>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBox x:Name="txtTime" Text="{Binding Path=Selected.Time}" TextBoxBase.TextChanged="setTime">
+
+                </TextBox>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
             <ListView ItemsSource="{Binding Path=Connections.List}" SelectionChanged="getConnectionDetails" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
